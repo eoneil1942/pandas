@@ -1,0 +1,15 @@
+This repository provides a layer for AWS Lambda to support the
+python 3.8 pandas library. It places the libraries into the right
+places in the Linux filesystem as seen from your lambda function.
+
+To use it:
+1. Upload the layer file pandas.zip to an S3 bucket
+2. Upload the layer file from S3 into your lambda execution setup by
+using the AWS CLI command
+
+aws lambda publish-layer-version --layer-name pandas-layer --description "pandas layer" --content S3Bucket=<S3bucketname>,S3Key=pandas.zip --compatible-runtimes python3.8
+(A sample S3 bucketname is myproj-5fu41htku3jr)
+
+3. In the AWS Lambda console, use "Add A Layer", choose Custom Layer, and
+find pandas-layer, and specify version 1
+

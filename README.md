@@ -11,7 +11,18 @@ aws lambda publish-layer-version --layer-name pandas-layer --description "pandas
 (A sample S3 bucketname is myproj-5fu41htku3jr)
 
 3. In the AWS Lambda console, use "Add A Layer", choose Custom Layer, and
-find pandas-layer, and specify version 1
+find pandas-layer, and specify version 1. You will see its ARN, like
+arn:aws:lambda:us-east-1:317555515996:layer:pandas:1
+
+4. You can specify use of the layer in serverless.yml for a lambda function
+using this ARN, for ex.:
+functions:
+  create:
+    handler: records/create.create
+    layers:
+      - arn:aws:lambda:us-east-1:668099181075:layer:AWSLambda-Python38-SciPy1x:29
+      - arn:aws:lambda:us-east-1:317555515996:layer:pandas-layer6:1
+     ...
 
 Thanks to Stack Overflow 43877692 and 55695187
 "# pandas" 
